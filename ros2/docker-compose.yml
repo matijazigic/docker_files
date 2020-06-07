@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  ros2:
+    environment:
+      - "DISPLAY" 
+    image: ${ROS_REGISTRY_IMAGE}
+    container_name: ${ROS_CONTAINER_NAME}
+    volumes:
+      - /etc/group:/etc/group:ro
+      - /etc/passwd:/etc/passwd:ro
+      - /etc/shadow:/etc/shadow:ro
+      - /etc/sudoers.d:/etc/sudoers.d:ro
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    network_mode: host
+    privileged: true
+    tty: true 
+  gazebo:
+    environment:
+      - "DISPLAY" 
+    image: ${GAZEBO_REGISTRY_IMAGE}
+    container_name: ${GAZEBO_CONTAINER_NAME}
+    volumes:
+      - /etc/group:/etc/group:ro
+      - /etc/passwd:/etc/passwd:ro
+      - /etc/shadow:/etc/shadow:ro
+      - /etc/sudoers.d:/etc/sudoers.d:ro
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    network_mode: host
+    privileged: true
+    tty: true 
